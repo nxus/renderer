@@ -1,0 +1,25 @@
+/* 
+* @Author: Mike Reich
+* @Date:   2015-11-10 06:43:53
+* @Last Modified 2015-11-15
+*/
+
+'use strict';
+
+import ejs from 'ejs';
+
+class EjsRenderer {
+  
+  constructor (app, loaded) {
+    app.on('renderer.register', (handler) => {
+      handler('ejs', this._render)
+    })
+  }
+
+  _render (content, data, callback) {
+    var filename = data.filename || process.cwd();
+    callback(null, ejs.render(content, data, {filename: filename}));
+  }
+}
+
+export default EjsRenderer
