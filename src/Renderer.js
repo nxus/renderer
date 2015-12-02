@@ -11,15 +11,15 @@ import path from 'path';
 
 class Renderer {
   
-  constructor(app, loaded) {
+  constructor(app) {
     this._renderers = {};
 
-    app.on('app.load', () => {
-      app.emit('renderer.register', this._registerRenderer.bind(this))
+    app.on('load').then( () => {
+      app.get('renderer').gather('register').each(this._registerRenderer.bind(this));
     })
 
-    app.on('renderer.render', this._render.bind(this))
-    app.on('renderer.renderFile', this._renderFile.bind(this))
+    app.get('renderer').on('render', this._render.bind(this));
+    app.get('renderer').on('renderFile', this._renderFile.bind(this));
   }
 
   _registerRenderer (type, handler) {
