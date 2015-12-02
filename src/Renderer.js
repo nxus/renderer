@@ -15,7 +15,7 @@ class Renderer {
     this._renderers = {};
 
     app.on('load').then( () => {
-      app.get('renderer').gather('register').each(this._registerRenderer.bind(this));
+      app.get('renderer').gather('register').each((args) => this._registerRenderer.apply(this, args));
     })
 
     app.get('renderer').on('render', this._render.bind(this));
@@ -27,19 +27,19 @@ class Renderer {
     this._renderers[type] = handler;
   }
 
-  _render (type, content, opts, callback) {
-    if(!this._renderers[type]) return callback(new Error('No matching renderer found'), content)
-    this._renderers[type](content, opts, callback);
+  _render (type, content, opts) {
+    if(!this._renderers[type]) throw new Error('No matching renderer found: '+ type);
+    return this._renderers[type](content, opts);
   }
 
-  _renderFile (filename, opts, callback) {
+  _renderFile (filename, opts) {
     fs.readFile(filename, (err, content) => {
       content = content.toString()
       const type = path.extname(filename).replace(".", "");
 
-      if(!this._renderers[type]) return callback(new Error('No matching renderer found'), content)
+      if(!this._renderers[type]) throw new Error('No matching renderer found: '+ type);
       
-      this._renderers[type](content, opts, callback);
+      return this._renderers[type](content, opts);
     })
   }
 

@@ -16,7 +16,7 @@ class EjsRenderer {
 
   _render (content, data, callback) {
     var filename = data.filename || process.cwd();
-    callback(null, ejs.render(content, data, {filename: filename}));
+    return ejs.render(content, data, {filename: filename});
   }
 }
 
