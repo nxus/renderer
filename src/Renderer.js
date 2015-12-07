@@ -14,7 +14,7 @@ class Renderer {
   constructor(app) {
     this._renderers = {};
 
-    app.on('load').then( () => {
+    app.once('load', () => {
       app.get('renderer').gather('register').each((args) => this._registerRenderer.apply(this, args));
     })
 
