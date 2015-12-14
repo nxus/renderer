@@ -1,13 +1,16 @@
 /* 
 * @Author: Mike Reich
 * @Date:   2015-11-09 18:55:29
-* @Last Modified 2015-11-10
+* @Last Modified 2015-12-14
 */
 
 'use strict';
 
+import Promise from 'bluebird';
 import fs from 'fs';
 import path from 'path';
+
+Promise.promisifyAll(fs);
 
 class Renderer {
   
@@ -32,7 +35,7 @@ class Renderer {
   }
 
   _renderFile (filename, opts) {
-    fs.readFile(filename, (err, content) => {
+    return fs.readFileAsync(filename).then((content) => {
       content = content.toString()
       const type = path.extname(filename).replace(".", "");
 
