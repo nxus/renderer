@@ -17,11 +17,9 @@ class Renderer {
   constructor(app) {
     this._renderers = {};
 
-    app.once('load', () => {
-      app.get('renderer').gather('register', this._registerRenderer.bind(this));
-      app.get('renderer').respond('render', this._render.bind(this));
-      app.get('renderer').respond('renderFile', this._renderFile.bind(this));
-    });
+    app.get('renderer').gather('register', this._registerRenderer.bind(this));
+    app.get('renderer').respond('render', this._render.bind(this));
+    app.get('renderer').respond('renderFile', this._renderFile.bind(this));
   }
 
   _registerRenderer (type, handler) {
