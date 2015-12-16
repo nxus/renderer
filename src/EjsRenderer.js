@@ -1,7 +1,7 @@
 /* 
 * @Author: Mike Reich
 * @Date:   2015-11-10 06:43:53
-* @Last Modified 2015-11-15
+* @Last Modified 2015-12-15
 */
 
 'use strict';
@@ -11,8 +11,8 @@ import ejs from 'ejs';
 class EjsRenderer {
   
   constructor (app, loaded) {
-    app.get('renderer').provide('register', 'ejs', this._render);
-    app.get('renderer').provide('register', 'html', this._render);
+    app.get('renderer').provide('renderer', 'ejs', this._render);
+    app.get('renderer').provide('renderer', 'html', this._render);
   }
 
   _render (content, data, callback) {

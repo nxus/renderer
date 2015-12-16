@@ -1,7 +1,7 @@
 /* 
 * @Author: Mike Reich
 * @Date:   2015-11-09 18:55:29
-* @Last Modified 2015-12-14
+* @Last Modified 2015-12-15
 */
 
 'use strict';
@@ -17,11 +17,9 @@ class Renderer {
   constructor(app) {
     this._renderers = {};
 
-    app.once('load', () => {
-      app.get('renderer').gather('register', this._registerRenderer.bind(this));
-      app.get('renderer').respond('render', this._render.bind(this));
-      app.get('renderer').respond('renderFile', this._renderFile.bind(this));
-    });
+    app.get('renderer').gather('renderer', this._registerRenderer.bind(this));
+    app.get('renderer').respond('render', this._render.bind(this));
+    app.get('renderer').respond('renderFile', this._renderFile.bind(this));
   }
 
   _registerRenderer (type, handler) {

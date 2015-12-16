@@ -2,7 +2,7 @@
   "name": "@nxus/renderer",
   "version": "2.1.0",
   "description": "Rendering framework for Nxus applications/",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "NODE_ENV=test mocha --compilers js:babel/register -R spec",
     "compile": "babel --optional runtime -d lib/ src/",
