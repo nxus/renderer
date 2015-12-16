@@ -1,6 +1,6 @@
 {
   "name": "@nxus/renderer",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Rendering framework for Nxus applications/",
   "main": "lib/index.js",
   "scripts": {
