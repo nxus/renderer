@@ -11,8 +11,8 @@ import ejs from 'ejs';
 class EjsRenderer {
   
   constructor (app, loaded) {
-    app.get('renderer').provide('renderer', 'ejs', this._render);
-    app.get('renderer').provide('renderer', 'html', this._render);
+    app.get('renderer').renderer('ejs', this._render);
+    app.get('renderer').renderer('html', this._render);
   }
 
   _render (content, data, callback) {

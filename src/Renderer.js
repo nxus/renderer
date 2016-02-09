@@ -17,22 +17,41 @@ class Renderer {
   constructor(app) {
     this._renderers = {};
 
-    app.get('renderer').gather('renderer', this._registerRenderer.bind(this));
-    app.get('renderer').respond('render', this._render.bind(this));
-    app.get('renderer').respond('renderFile', this._renderFile.bind(this));
+    app.get('renderer').use(this)
+      .gather('renderer')
+      .respond('render')
+      .respond('renderFile')
   }
 
-  _registerRenderer (type, handler) {
+  /**
+   * Provide a renderer for a particular type (file extension)
+   * @param {string} type The type (e.g. 'html') this renderer should handle
+   * @param {function} handler Function to receive (content, options) and return rendered content
+   */
+  renderer (type, handler) {
     if(typeof handler != "function") throw new Error("Renderer handler must be a callback")
     this._renderers[type] = handler;
   }
 
-  _render (type, content, opts) {
+  /**
+   * Request rendered content based on type
+   * @param {string} type The type (e.g. 'html') of the content
+   * @param {string} content The contents to render 
+   * @param {object} opts Options for the renderer context
+   * @return {Promise} The rendered content
+   */
+  render (type, content, opts) {
     if(!this._renderers[type]) throw new Error('No matching renderer found: '+ type);
     return this._renderers[type](content, opts);
   }
 
-  _renderFile (filename, opts) {
+  /**
+   * Provide a renderer for a particular type (file extension)
+   * @param {string} filename Path to content to render
+   * @param {object} opts Options for the renderer context
+   * @return {Promise} The rendered content
+   */
+  renderFile (filename, opts) {
     return fs.readFileAsync(filename).then((content) => {
       content = content.toString()
       const type = path.extname(filename).replace(".", "");
