@@ -29,6 +29,7 @@
     "babel-runtime": "^5.7.0",
     "bluebird": "^3.0.6",
     "ejs": "^2.3.4",
+    "moment": "^2.11.2",
     "underscore": "^1.8.3"
   },
   "peerDependencies": {

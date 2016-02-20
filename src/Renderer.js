@@ -1,7 +1,7 @@
 /* 
 * @Author: Mike Reich
 * @Date:   2015-11-09 18:55:29
-* @Last Modified 2015-12-15
+* @Last Modified 2016-02-12
 */
 
 'use strict';
@@ -12,6 +12,9 @@ import path from 'path';
 
 Promise.promisifyAll(fs);
 
+/**
+ * Renderer renders different files and content using common rendering engines, like EJS and MarkDown.
+ */
 class Renderer {
   
   constructor(app) {
