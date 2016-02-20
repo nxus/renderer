@@ -1,30 +1,32 @@
-# Nxus Renderer
+# @nxus/renderer
+
+## 
 
 [![Build Status](https://travis-ci.org/nxus/renderer.svg?branch=master)](https://travis-ci.org/nxus/renderer)
 
 A rendering framework for Nxus applications.
 
-## Installation
+### Installation
 
 In your Nxus application:
 
     > npm install @nxus/renderer --save
 
-## Usage
+### Usage
 
-### Defining a renderer
+#### Defining a renderer
 
     app.get('renderer').renderer(type, handler);
 
 Where `type` is usually the filename extension and `handler` returns the rendered text when called with contents to render and an optional `opts` object.
 
-### Rendering a string
+#### Rendering a string
 
     app.get('renderer').render(type, text).then((renderedText) => {});
 
 You can pass an optional arugment `opts` for options to pass to the renderer.
 
-### Rendering a file
+#### Rendering a file
 
     app.get('renderer').renderFile(type, filename).then((renderedText) => {});
 
@@ -32,9 +34,13 @@ You can pass an optional arugment `opts` for options to pass to the renderer.
 
 ## API
 
-### render
+* * *
 
-[src/Renderer.js:43-46](https://github.com/nxus/renderer/blob/a30ac87dd7ac7b27a6c8bcf59b8e684e4ddf4f38/src/Renderer.js#L43-L46 "Source code on GitHub")
+## Renderer
+
+Renderer renders different files and content using common rendering engines, like EJS and MarkDown.
+
+### render
 
 Request rendered content based on type
 
@@ -48,8 +54,6 @@ Returns **[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refe
 
 ### renderer
 
-[src/Renderer.js:31-34](https://github.com/nxus/renderer/blob/a30ac87dd7ac7b27a6c8bcf59b8e684e4ddf4f38/src/Renderer.js#L31-L34 "Source code on GitHub")
-
 Provide a renderer for a particular type (file extension)
 
 **Parameters**
@@ -58,8 +62,6 @@ Provide a renderer for a particular type (file extension)
 -   `handler` **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** Function to receive (content, options) and return rendered content
 
 ### renderFile
-
-[src/Renderer.js:54-63](https://github.com/nxus/renderer/blob/a30ac87dd7ac7b27a6c8bcf59b8e684e4ddf4f38/src/Renderer.js#L54-L63 "Source code on GitHub")
 
 Provide a renderer for a particular type (file extension)
 
