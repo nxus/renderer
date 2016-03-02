@@ -92,9 +92,7 @@ class Renderer {
       content = content.toString()
       const type = path.extname(filename).replace(".", "");
 
-      if(!this._renderers[type]) throw new Error('No matching renderer found: '+ type);
-      
-      return this._renderers[type](content, opts);
+      return this.request('render', type, content, opts);
     })
   }
 

@@ -17,7 +17,7 @@ class EjsRenderer {
     app.get('renderer').renderer('html', this._render);
   }
 
-  _render (content, data, callback) {
+  _render (content, data) {
     var filename = data.filename || process.cwd();
     data._ = _
     data.moment = moment
