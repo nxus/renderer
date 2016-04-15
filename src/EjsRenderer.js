@@ -1,7 +1,7 @@
 /* 
 * @Author: Mike Reich
 * @Date:   2015-11-10 06:43:53
-* @Last Modified 2016-02-19
+* @Last Modified 2016-04-14
 */
 
 'use strict';
@@ -9,6 +9,7 @@
 import ejs from 'ejs';
 import _ from 'underscore';
 import moment from 'moment';
+import path from 'path';
 
 class EjsRenderer {
   

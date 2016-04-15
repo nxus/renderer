@@ -1,7 +1,7 @@
 /* 
 * @Author: Mike Reich
 * @Date:   2015-11-09 18:55:29
-* @Last Modified 2016-02-20
+* @Last Modified 2016-04-15
 */
 /**
  * [![Build Status](https://travis-ci.org/nxus/renderer.svg?branch=master)](https://travis-ci.org/nxus/renderer)
@@ -24,9 +24,11 @@
  * 
  * ### Rendering a string
  * 
- *     app.get('renderer').render(type, text).then((renderedText) => {});
+ *     app.get('renderer').render(type, text).then((renderedText) => {console.log(renderedText)});
  * 
  * You can pass an optional arugment `opts` for options to pass to the renderer.
+ *
+ *     app.get('renderer').render(type, text, {title: 'My Title'}).then((renderedText) => {console.log(renderedText)});
  * 
  * ### Rendering a file
  * 
@@ -91,6 +93,7 @@ class Renderer {
     return fs.readFileAsync(filename).then((content) => {
       content = content.toString()
       const type = path.extname(filename).replace(".", "");
+      opts.filename = filename
 
       return this.request('render', type, content, opts);
     })
