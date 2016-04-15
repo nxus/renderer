@@ -22,9 +22,11 @@ Where `type` is usually the filename extension and `handler` returns the rendere
 
 #### Rendering a string
 
-    app.get('renderer').render(type, text).then((renderedText) => {});
+    app.get('renderer').render(type, text).then((renderedText) => {console.log(renderedText)});
 
 You can pass an optional arugment `opts` for options to pass to the renderer.
+
+    app.get('renderer').render(type, text, {title: 'My Title'}).then((renderedText) => {console.log(renderedText)});
 
 #### Rendering a file
 
