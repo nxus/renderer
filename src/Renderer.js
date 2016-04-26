@@ -1,7 +1,7 @@
 /* 
 * @Author: Mike Reich
 * @Date:   2015-11-09 18:55:29
-* @Last Modified 2016-04-15
+* @Last Modified 2016-04-26
 */
 /**
  * [![Build Status](https://travis-ci.org/nxus/renderer.svg?branch=master)](https://travis-ci.org/nxus/renderer)
@@ -78,7 +78,7 @@ class Renderer {
    * @param {object} opts Options for the renderer context
    * @return {Promise} The rendered content
    */
-  render (type, content, opts) {
+  render (type, content, opts = {}) {
     if(!this._renderers[type]) throw new Error('No matching renderer found: '+ type);
     return this._renderers[type](content, opts);
   }
@@ -89,13 +89,12 @@ class Renderer {
    * @param {object} opts Options for the renderer context
    * @return {Promise} The rendered content
    */
-  renderFile (filename, opts) {
+  renderFile (filename, opts = {}) {
     return fs.readFileAsync(filename).then((content) => {
       content = content.toString()
       const type = path.extname(filename).replace(".", "");
       opts.filename = filename
-
-      return this.request('render', type, content, opts);
+      return this.request('render', type, content, opts)
     })
   }
 
