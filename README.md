@@ -10,7 +10,7 @@ A rendering framework for Nxus applications.
 
 In your Nxus application:
 
-    > npm install @nxus/renderer --save
+    > npm install nxus-renderer --save
 
 ### Usage
 
